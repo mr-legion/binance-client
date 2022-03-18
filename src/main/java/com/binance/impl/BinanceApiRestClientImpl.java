@@ -2,6 +2,7 @@ package com.binance.impl;
 
 import com.binance.BinanceApiRestClient;
 import com.binance.domain.account.Balance;
+import com.binance.domain.market.ExchangeInfo;
 
 import java.time.Instant;
 import java.util.List;
@@ -18,6 +19,13 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
 
     public BinanceApiRestClientImpl(BinanceApiService binanceApiService) {
         this.binanceApiService = binanceApiService;
+    }
+
+    // Market endpoints
+
+    @Override
+    public ExchangeInfo getExchangeInfo() {
+        return executeSync(binanceApiService.getExchangeInfo());
     }
 
     // Account endpoints

@@ -3,6 +3,7 @@ package com.binance.impl;
 import com.binance.BinanceApiAsyncRestClient;
 import com.binance.BinanceApiClientFactory;
 import com.binance.domain.account.Balance;
+import com.binance.domain.market.ExchangeInfo;
 import com.binance.security.ApiCredentials;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import java.util.concurrent.ExecutionException;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BinanceApiAsyncRestClientImplTest {
 
@@ -23,6 +25,13 @@ public class BinanceApiAsyncRestClientImplTest {
         String secret = System.getenv("SECRET");
         ApiCredentials apiCredentials = new ApiCredentials(apiKey, secret);
         this.binanceApiAsyncRestClient = BinanceApiClientFactory.newInstance(apiCredentials).newAsyncRestClient();
+    }
+
+    @Test
+    public void getExchangeInfo_ShouldReturnExchangeInfo() throws ExecutionException, InterruptedException {
+        ExchangeInfo exchangeInfo = binanceApiAsyncRestClient.getExchangeInfo().get();
+        assertNotNull(exchangeInfo);
+        assertThat(exchangeInfo.getMarkets(), is(not(empty())));
     }
 
     @Test

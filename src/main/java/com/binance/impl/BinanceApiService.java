@@ -1,6 +1,7 @@
 package com.binance.impl;
 
 import com.binance.domain.account.Balance;
+import com.binance.domain.market.ExchangeInfo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -14,6 +15,11 @@ import static com.binance.constant.BinanceApiConstants.AUTHORIZATION_REQUIRED_HE
  * Binance's REST API URL mappings.
  */
 public interface BinanceApiService {
+
+    // Market data endpoints
+
+    @GET("/api/v3/exchangeInfo")
+    Call<ExchangeInfo> getExchangeInfo();
 
     // Account endpoints
 

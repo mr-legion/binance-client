@@ -2,6 +2,7 @@ package com.binance.impl;
 
 import com.binance.BinanceApiAsyncRestClient;
 import com.binance.domain.account.Balance;
+import com.binance.domain.market.ExchangeInfo;
 
 import java.time.Instant;
 import java.util.List;
@@ -18,6 +19,15 @@ public class BinanceApiAsyncRestClientImpl implements BinanceApiAsyncRestClient 
 
     public BinanceApiAsyncRestClientImpl(BinanceApiService binanceApiService) {
         this.binanceApiService = binanceApiService;
+    }
+
+    // Market endpoints
+
+    @Override
+    public CompletableFuture<ExchangeInfo> getExchangeInfo() {
+        CompletableFuture<ExchangeInfo> future = new CompletableFuture<>();
+        binanceApiService.getExchangeInfo().enqueue(new RetrofitCallbackAdapter<>(future));
+        return future;
     }
 
     // Account endpoints
