@@ -5,6 +5,7 @@ import com.binance.BinanceApiClientFactory;
 import com.binance.domain.account.Balance;
 import com.binance.domain.market.ExchangeInfo;
 import com.binance.domain.market.MarketTicker;
+import com.binance.domain.market.OrderBook;
 import com.binance.security.ApiCredentials;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,14 @@ public class BinanceApiAsyncRestClientImplTest {
     public void getMarketTickers_ShouldReturnMarketTickers() throws ExecutionException, InterruptedException {
         List<MarketTicker> marketTickers = binanceApiAsyncRestClient.getMarketTickers().get();
         assertThat(marketTickers, allOf(notNullValue(), is(not(empty()))));
+    }
+
+    @Test
+    public void getOrderBook_ShouldReturnOrderBookForETHBTC() throws ExecutionException, InterruptedException {
+        OrderBook orderBook = binanceApiAsyncRestClient.getOrderBook("ETHBTC", 5).get();
+        assertNotNull(orderBook);
+        assertThat(orderBook.getAsks(), is(not(empty())));
+        assertThat(orderBook.getBids(), is(not(empty())));
     }
 
     @Test

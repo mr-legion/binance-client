@@ -4,6 +4,7 @@ import com.binance.BinanceApiRestClient;
 import com.binance.domain.account.Balance;
 import com.binance.domain.market.ExchangeInfo;
 import com.binance.domain.market.MarketTicker;
+import com.binance.domain.market.OrderBook;
 
 import java.time.Instant;
 import java.util.List;
@@ -32,6 +33,11 @@ public class BinanceApiRestClientImpl implements BinanceApiRestClient {
     @Override
     public List<MarketTicker> getMarketTickers() {
         return executeSync(binanceApiService.getMarketTickers());
+    }
+
+    @Override
+    public OrderBook getOrderBook(String market, Integer limit) {
+        return executeSync(binanceApiService.getOrderBook(market, limit));
     }
 
     // Account endpoints
