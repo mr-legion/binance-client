@@ -2,6 +2,7 @@ package com.binance;
 
 import com.binance.domain.account.Balance;
 import com.binance.domain.market.ExchangeInfo;
+import com.binance.domain.market.MarketTicker;
 
 import java.util.List;
 
@@ -18,6 +19,13 @@ public interface BinanceApiRestClient {
      * @return market info
      */
     ExchangeInfo getExchangeInfo();
+
+    /**
+     * Get market ticker information.
+     *
+     * @return market tickers
+     */
+    List<MarketTicker> getMarketTickers();
 
     // Account endpoints
 

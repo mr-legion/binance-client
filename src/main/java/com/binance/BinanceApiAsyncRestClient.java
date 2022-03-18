@@ -2,6 +2,7 @@ package com.binance;
 
 import com.binance.domain.account.Balance;
 import com.binance.domain.market.ExchangeInfo;
+import com.binance.domain.market.MarketTicker;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -19,6 +20,13 @@ public interface BinanceApiAsyncRestClient {
      * @return market info
      */
     CompletableFuture<ExchangeInfo> getExchangeInfo();
+
+    /**
+     * Get market ticker information (asynchronous).
+     *
+     * @return market tickers
+     */
+    CompletableFuture<List<MarketTicker>> getMarketTickers();
 
     // Account endpoints
 

@@ -2,6 +2,7 @@ package com.binance.impl;
 
 import com.binance.domain.account.Balance;
 import com.binance.domain.market.ExchangeInfo;
+import com.binance.domain.market.MarketTicker;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -20,6 +21,9 @@ public interface BinanceApiService {
 
     @GET("/api/v3/exchangeInfo")
     Call<ExchangeInfo> getExchangeInfo();
+
+    @GET("/api/v3/ticker/bookTicker")
+    Call<List<MarketTicker>> getMarketTickers();
 
     // Account endpoints
 

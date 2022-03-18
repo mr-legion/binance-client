@@ -4,6 +4,7 @@ import com.binance.BinanceApiClientFactory;
 import com.binance.BinanceApiRestClient;
 import com.binance.domain.account.Balance;
 import com.binance.domain.market.ExchangeInfo;
+import com.binance.domain.market.MarketTicker;
 import com.binance.security.ApiCredentials;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,12 @@ public class BinanceApiRestClientImplTest {
         ExchangeInfo exchangeInfo = binanceApiRestClient.getExchangeInfo();
         assertNotNull(exchangeInfo);
         assertThat(exchangeInfo.getMarkets(), is(not(empty())));
+    }
+
+    @Test
+    public void getMarketTickers_ShouldReturnMarketTickers() {
+        List<MarketTicker> marketTickers = binanceApiRestClient.getMarketTickers();
+        assertThat(marketTickers, allOf(notNullValue(), is(not(empty()))));
     }
 
     @Test
