@@ -29,7 +29,7 @@ public class BinanceApiClientFactory {
         this(new OkHttpClient(), apiCredentials, apiInteractionConfig);
     }
 
-    private BinanceApiClientFactory(OkHttpClient client,
+    public BinanceApiClientFactory(OkHttpClient client,
                                     ApiCredentials apiCredentials,
                                     ApiInteractionConfig apiInteractionConfig) {
         OkHttpClient newClient = client.newBuilder()
